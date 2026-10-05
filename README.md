@@ -13,20 +13,15 @@ Make sure you have:
 
 ## 🏷️ Choose your MySQL version
 
-The image tag in `Dockerfile` is the version you deploy. The default is `8.0`. Change it to whatever you already use.
+The `image` tag in `andasy.hcl` is the version you deploy. The default is `8.0`. Change it to whatever you already use.
 
-That file is the **MySQL server**. Your own application is a separate Andasy app; it is not built from this Dockerfile. It connects over the network after MySQL is up.
-
-```dockerfile
-ARG MYSQL_VERSION=8.0
-FROM mysql:${MYSQL_VERSION}
-
-CMD ["mysqld", "--bind-address=*", "--character-set-server=utf8mb4", "--collation-server=utf8mb4_unicode_ci", "--innodb-buffer-pool-size=128M"]
+```hcl
+image = "docker.io/library/mysql:8.0"
 ```
 
 Common tags: `5.7`, `8.0`, `8.4`, `9.0`, or a pin such as `8.0.40`. See [Docker Hub mysql](https://hub.docker.com/_/mysql).
 
-`--bind-address=*` is required so connections from `andasy proxy` and from `<app_name>.internal` succeed. Set `MYSQL_ROOT_PASSWORD` (and optional `MYSQL_USER` / `MYSQL_PASSWORD`) with `andasy secret set` after the first deploy — not in the Dockerfile.
+This app is the **MySQL server**. Your own application is a separate Andasy app. It connects over the network after MySQL is up. Set `MYSQL_ROOT_PASSWORD` (and optional `MYSQL_USER` / `MYSQL_PASSWORD`) with `andasy secret set` after the first deploy.
 
 ⚠️ Do **not** change major versions on an existing `mysql_data` volume. Pick the version before the first deploy, or create a new volume if you need another major.
 
@@ -44,7 +39,7 @@ Then redeploy.
 
 ### 1️⃣ Create a New App on Andasy
 
-Start the setup wizard (or keep the `Dockerfile` and `andasy.hcl` already in this repo):
+Start the setup wizard (or keep the `andasy.hcl` already in this repo):
 
 ```bash
 andasy setup

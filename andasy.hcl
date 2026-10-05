@@ -7,6 +7,7 @@ app_name = "mysql-example"
 
 app {
   primary_region = "kgl"
+  image          = "docker.io/library/mysql:8.0"
 
   env = {
     MYSQL_DATABASE = "app"
