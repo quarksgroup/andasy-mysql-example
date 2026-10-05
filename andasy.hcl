@@ -12,8 +12,6 @@ app {
     MYSQL_DATABASE = "app"
   }
 
-  port = 3306
-
   compute {
     cpu      = 1
     memory   = 512

@@ -96,7 +96,7 @@ Wait until logs show `ready for connections`.
 
 ## 🌐 Connecting to MySQL
 
-`port = 3306` in `andasy.hcl` is required, but MySQL speaks the MySQL protocol, not HTTP. Do not use `https://<app-name>.andasy.dev` as the database host.
+MySQL listens on port `3306` inside the container. Do not use `https://<app-name>.andasy.dev` as the database host.
 
 ### From your laptop (`andasy proxy`)
 
