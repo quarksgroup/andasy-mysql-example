@@ -16,7 +16,7 @@ Make sure you have:
 The `image` tag in `andasy.hcl` is the version you deploy. The default is `8.0`. Change it to whatever you already use.
 
 ```hcl
-image = "docker.io/library/mysql:8.0"
+image = "mysql:8.0"
 ```
 
 Common tags: `5.7`, `8.0`, `8.4`, `9.0`, or a pin such as `8.0.40`. See [Docker Hub mysql](https://hub.docker.com/_/mysql).
